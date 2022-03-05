@@ -110,8 +110,12 @@ WSGI_APPLICATION = 'paparazzi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd9vqpo3ps6epth',
+        'USER': 'jprjeodvzdippt',
+        'PASSWORD': '6c1bd9d34b237cfd25197bee86bd08b383484d6b5bb6d1f97f427b2c79338e73',
+        'HOST': 'ec2-54-157-113-118.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 

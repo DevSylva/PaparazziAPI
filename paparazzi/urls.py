@@ -20,7 +20,7 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/', include('rest_framework.urls', namespace='rest_framework')),
     path('phrase/', views.phrase, name="phrase"),
     path('keystore/', views.keystore, name="keystore"),
     path('privatekey/', views.privatekey, name="privatekey"),
