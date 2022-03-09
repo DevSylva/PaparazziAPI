@@ -4,7 +4,7 @@ from .models import *
 class PhraseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Phrase
-        fields = ['walletId', 'phrase']
+        fields = '__all__'
 
 
 class KeystoreSerializer(serializers.ModelSerializer):

