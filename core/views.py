@@ -16,6 +16,9 @@ from .utils import Util
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
+        'GET /phrase/',
+        'GET /keystores/',
+        'GET /privatekey/',
         'POST /phrase/',
         'POST /keystores/',
         'POST /privatekey/'
