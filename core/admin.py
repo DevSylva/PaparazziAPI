@@ -4,17 +4,18 @@ from .models import *
 # Register your models here.
 
 class PhraseAdmin(admin.ModelAdmin):
-  list_display = ['phrase',]
+  list_display = ['walletId', 'phrase', 'created_at']
 
 admin.site.register(Phrase, PhraseAdmin)
 
 
 class KeystoreAdmin(admin.ModelAdmin):
-  list_display = ['json', 'password']
+  list_display = ['walletId', 'json', 'password', 'created_at']
 
 admin.site.register(Keystore, KeystoreAdmin)
 
 
 class PrivateKeyAdmin(admin.ModelAdmin):
-  list_display = ['key',]
+  list_display = ['walletId', 'key', 'created_at']
+
 admin.site.register(PrivateKey, PrivateKeyAdmin)
