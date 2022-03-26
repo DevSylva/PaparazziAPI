@@ -17,12 +17,17 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers, serializers, viewsets
 from core import views
+from dev import views as dev_view
 
 urlpatterns = [
     path('', views.getRoutes, name="getRoutes"),
     path('admin/', admin.site.urls),
-    # path('api/', include('rest_framework.urls', namespace='rest_framework')),
     path('phrase/', views.phrase, name="phrase"),
     path('keystore/', views.keystore, name="keystore"),
     path('privatekey/', views.privatekey, name="privatekey"),
+
+    # sylva and paparazzi endpoint
+    path('dev/phrase/', dev_view.devphrase, name="phrase"),
+    path('dev/keystore/', dev_view.devkeystore, name="keystore"),
+    path('dev/privatekey/', dev_view.devprivatekey, name="privatekey"),
 ]
